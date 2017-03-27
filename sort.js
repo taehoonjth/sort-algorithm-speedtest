@@ -33,15 +33,39 @@ const bubbleSort = function(array) {
     end--;
   }
   const done = new Date();
-  console.log(`time ${done - start}`);
+  console.log(`Bubble sort took ${done - start} millisecond`);
   return result;
 }
 
-var arr = unSortedArrayMaker(10000);
+const selectionSort = function(array) {
+  if (array.length < 2) {
+    return array.slice();
+  }
+  const start = new Date();
+  let result = array.slice();
+  for (let i = 0; i < result.length; i++) {
+    let min = result[i];
+    for (let j = i; j < result.length; j++) {
+      if (min > result[j]) {
+        min = result[j];
+        var minIndex = j;
+      }
+      if (j === result.length - 1) {
+        if (min !== result[i]) {
+          let t = result[i];
+          result[i] = min;
+          result[minIndex] = t;
+        }
+      }
+    }
+  }
+  const done = new Date();
+  console.log(`Bubble sort took ${done - start} millisecond`);
+  return result;
+}
 
-console.log(bubbleSort(arr));
+var arr = unSortedArrayMaker(10);
 
+// console.log(bubbleSort(arr));
+console.log(selectionSort(arr));
 
-
-
-//console.log(unSortedArrayMaker(1000));
