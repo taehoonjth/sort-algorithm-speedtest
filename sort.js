@@ -72,12 +72,6 @@ const selectionSort = function(array) {
   return result;
 }
 
-const mergeSort = function() {
-  if (array.length < 2) {
-    return array.slice();
-  }
-}
-
 var arronBubbleSort = function(arr) {
   var sortedCounter = 0;
   for (var i = 1; i < arr.length; ++i) {
@@ -127,20 +121,41 @@ var bubbleSort_2 = function(array) {
   return array;
   };
 
+const merge = function(left, right) {
+  let merged = [];
+  let iLeft = 0;
+  let iRight = 0;
+  while (merged.length !== left.length + right.length) {
+    if (left[iLeft] <= right[iRight]) {
+      merged.push(left[iLeft]);
+      iLeft++
+    } else {
+      merged.push(right[iRight]);
+      iRight++
+    }
+  }
+  return merged;
+};
+
+const mergeSort = function() {
+  if (array.length < 2) {
+    return array.slice();
+  }
+}
 
 
 
 
-var arr = unSortedArrayMaker(5000);
 
 
-
-
-bubbleSort(arr)
-selectionSort(arr)
-const start = new Date();
-arronBubbleSort(arr)
-const done = new Date();
-bubbleSort_2(arr);
+// var arr = unSortedArrayMaker(5000);
+// bubbleSort(arr)
+// selectionSort(arr)
+// const start = new Date();
+// arronBubbleSort(arr)
+// const done = new Date();
+// bubbleSort_2(arr);
 // console.log(`arronBubbleSort took ${done - start} millisecond`);
+
+console.log(merge([1, 2, 3], [4, 5, 6]));
 
