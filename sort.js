@@ -126,7 +126,7 @@ const merge = function(left, right) {
   let iLeft = 0;
   let iRight = 0;
   while (merged.length !== left.length + right.length) {
-    if (left[iLeft] <= right[iRight]) {
+    if (iRight === right.length || left[iLeft] <= right[iRight]) {
       merged.push(left[iLeft]);
       iLeft++
     } else {
@@ -143,11 +143,6 @@ const mergeSort = function() {
   }
 }
 
-
-
-
-
-
 // var arr = unSortedArrayMaker(5000);
 // bubbleSort(arr)
 // selectionSort(arr)
@@ -157,5 +152,6 @@ const mergeSort = function() {
 // bubbleSort_2(arr);
 // console.log(`arronBubbleSort took ${done - start} millisecond`);
 
-console.log(merge([1, 2, 3], [4, 5, 6]));
+// console.log(merge([1, 3, 9], [4, 5, 6]));
+// console.log(merge([4, 5, 6], [1, 3, 9]));
 
