@@ -21,7 +21,6 @@ const bubbleSort = function(array) {
   if (array.length < 2) {
     return array.slice();
   }
-  const start = new Date();
   let result = array.slice();
   let end = result.length;
   while (end !== 1) {
@@ -40,8 +39,6 @@ const bubbleSort = function(array) {
     }
     end--;
   }
-  const done = new Date();
-  console.log(`Bubble sort took ${done - start} millisecond`);
   return result;
 }
 
@@ -49,7 +46,6 @@ const selectionSort = function(array) {
   if (array.length < 2) {
     return array.slice();
   }
-  const start = new Date();
   let result = array.slice();
   for (let i = 0; i < result.length; i++) {
     let min = result[i];
@@ -67,29 +63,8 @@ const selectionSort = function(array) {
       }
     }
   }
-  const done = new Date();
-  console.log(`Selection sort took ${done - start} millisecond`);
   return result;
 }
-
-var arronBubbleSort = function(arr) {
-  var sortedCounter = 0;
-  for (var i = 1; i < arr.length; ++i) {
-    if (arr[i] < arr[i - 1]) {
-      var temp = arr[i];
-      arr[i] = arr[i - 1];
-      arr[i - 1] = temp;
-    } else { 
-      ++sortedCounter; 
-    }
-  }
-  
-  if (sortedCounter < arr.length - 1) {
-    return arronBubbleSort(arr); 
-  }
-  else return arr;
-};
-
 
 var swap = function(index1, index2, array) {
   var temp = array[index1];
@@ -99,13 +74,10 @@ var swap = function(index1, index2, array) {
 };
 
 var bubbleSort_2 = function(array) {
-  const start = new Date();
   if (!Array.isArray(array)) {
     throw new TypeError('bubbleSort accepts only arrays');
   }
-
   var len = array.length;
-
   for (var i = 0; i < len; i++) {
     var swaps = 0;
     for (var j = 0; j < len - 1 - i; j++) {
@@ -116,8 +88,6 @@ var bubbleSort_2 = function(array) {
     }
     if (!swaps) { break; }
   }
-  const done = new Date();
-  console.log(`bubbleSort_2 took ${done - start} millisecond`);
   return array;
   };
 
@@ -169,22 +139,20 @@ const iterativeMergeSort = function(array) {
   return result[0];
 }
 
-console.log(iterativeMergeSort([4, 1, 2, 7, 5, 3, 9]));
+const sortAlgorithmTester = function(n, algorithm1, algorithm2) {
+  var algorithms = [...arguments].slice(1); 
+  var unSortedArray = unSortedArrayMaker(n);
+  for (var i = 0; i < algorithms.length; i++) {
+    var unSortedArrayCopy = unSortedArray.slice();
+    const start = new Date();
+    algorithms[i](unSortedArrayCopy);
+    const end = new Date();
+    console.log(`${algorithms[i].name} took ${end - start} millisecond`);
+  }
+}
 
+sortAlgorithmTester(20000, bubbleSort, bubbleSort_2, selectionSort, iterativeMergeSort);
 
-
-
-// var arr = unSortedArrayMaker(5000);
-// bubbleSort(arr)
-// selectionSort(arr)
-// const start = new Date();
-// arronBubbleSort(arr)
-// const done = new Date();
-// bubbleSort_2(arr);
-// console.log(`arronBubbleSort took ${done - start} millisecond`);
-
-// console.log(merge([1, 3, 9], [4, 5, 6]));
-// console.log(merge([4, 5, 6], [1, 3, 9]));
 
 
 
