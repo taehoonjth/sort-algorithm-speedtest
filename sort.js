@@ -137,11 +137,42 @@ const merge = function(left, right) {
   return merged;
 };
 
-const mergeSort = function() {
+const recursiveMergeSort = function() {
   if (array.length < 2) {
     return array.slice();
   }
+
 }
+
+const iterativeMergeSort = function(array) {
+  if (array.length < 2) {
+    return array.slice();
+  }
+  var result = [];
+  //Initial step: Input array is split into "sorted" sublists
+  for (var i = 0; i < array.length; i++) {
+    result.push([array[i]]);
+  }
+  //Merge step: Adjacent sublists are merged into sorted sublists
+  while(result.length !== 1) {
+    var temp = [];
+    for (var i = 0; i < result.length; i += 2) {
+      if (result[i + 1]) {
+        temp.push(merge(result[i], result[i + 1]));
+      } else {
+        temp.push(result[i])
+      }
+    }
+    result = temp;
+  }
+  //Done! Return the sorted array:
+  return result[0];
+}
+
+console.log(iterativeMergeSort([4, 1, 2, 7, 5, 3, 9]));
+
+
+
 
 // var arr = unSortedArrayMaker(5000);
 // bubbleSort(arr)
@@ -154,4 +185,10 @@ const mergeSort = function() {
 
 // console.log(merge([1, 3, 9], [4, 5, 6]));
 // console.log(merge([4, 5, 6], [1, 3, 9]));
+
+
+
+
+
+
 
