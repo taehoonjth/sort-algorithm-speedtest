@@ -145,13 +145,24 @@ const sortAlgorithmTester = function(n, algorithm1, algorithm2) {
   for (var i = 0; i < algorithms.length; i++) {
     var unSortedArrayCopy = unSortedArray.slice();
     const start = new Date();
-    algorithms[i](unSortedArrayCopy);
+    var sortedArray = algorithms[i](unSortedArrayCopy);
     const end = new Date();
-    console.log(`${algorithms[i].name} took ${end - start} millisecond`);
+    var sorted = true;
+    for (var j = 0; j < sortedArray.length - 2; j++) {
+      if (sortedArray[j] > sortedArray[j + 1]) {
+        sorted = false;
+        break;
+      }
+    }
+    if(sorted) {
+      console.log(`${algorithms[i].name} took ${end - start} millisecond`);
+    } else {
+      console.log(`${algorithms[i].name} failed!`);
+    }
   }
 }
 
-sortAlgorithmTester(20000, bubbleSort, bubbleSort_2, selectionSort, iterativeMergeSort);
+sortAlgorithmTester(10000, bubbleSort, bubbleSort_2, selectionSort, iterativeMergeSort);
 
 
 
