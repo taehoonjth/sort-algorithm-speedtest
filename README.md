@@ -9,5 +9,15 @@ To list up all of the sorting algorithms, and run speed test
 ## Getting Started
 ### Installing
 ```
-git clone https://github.com/Taehoonjth/sort-test/
+git clone https://github.com/Taehoonjth/sort-test/ && cd sort-test
+```
+## Running the test
+```
+node sort.js
+```
+## Contributing
+You can add more sort algorithms or better implementation with same alogorithm. When you add your sort function, please add your function to sortAlgorithmTester.
+For example...
+```
+sortAlgorithmTester(30000, bubbleSort, bubbleSort_2, selectionSort, iterativeMergeSort, quickSort, YOUR FUNCTION!);
 ```
