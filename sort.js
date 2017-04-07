@@ -1,3 +1,4 @@
+//Make an array which is unsorted
 const unSortedArrayMaker = function(length) {
   let arr = [];
   let m = 0;
@@ -42,6 +43,24 @@ const bubbleSort = function(array) {
   return result;
 }
 
+var bubbleSort_2 = function(array) {
+  if (!Array.isArray(array)) {
+    throw new TypeError('bubbleSort accepts only arrays');
+  }
+  var len = array.length;
+  for (var i = 0; i < len; i++) {
+    var swaps = 0;
+    for (var j = 0; j < len - 1 - i; j++) {
+      if (array[j] > array[j + 1]) {
+        swaps++;
+        swap(j, j + 1, array);
+      }
+    }
+    if (!swaps) { break; }
+  }
+  return array;
+  };
+
 const selectionSort = function(array) {
   if (array.length < 2) {
     return array.slice();
@@ -72,24 +91,6 @@ var swap = function(index1, index2, array) {
   array[index2] = temp;
   return array;
 };
-
-var bubbleSort_2 = function(array) {
-  if (!Array.isArray(array)) {
-    throw new TypeError('bubbleSort accepts only arrays');
-  }
-  var len = array.length;
-  for (var i = 0; i < len; i++) {
-    var swaps = 0;
-    for (var j = 0; j < len - 1 - i; j++) {
-      if (array[j] > array[j + 1]) {
-        swaps++;
-        swap(j, j + 1, array);
-      }
-    }
-    if (!swaps) { break; }
-  }
-  return array;
-  };
 
 const merge = function(left, right) {
   let merged = [];
@@ -139,6 +140,28 @@ const iterativeMergeSort = function(array) {
   return result[0];
 }
 
+const quickSort = function(array) {
+  // console.log(array);
+  if (array.length <= 1) {
+    return array;
+  }
+  var less = [];
+  var greater = [];
+  var pivot = array[array.length - 1];
+  for (var i = 0; i < array.length - 1; i++) {
+    if (array[i] < pivot) {
+      less.push(array[i]);
+    } else {
+      greater.push(array[i]);
+    }
+  }
+  // console.log(`pivot is ${pivot}`);
+  return quickSort(less).concat([pivot], quickSort(greater));
+}
+
+const heapSort = function(array) {
+}
+
 const sortAlgorithmTester = function(n, algorithm1, algorithm2) {
   var algorithms = [...arguments].slice(1); 
   var unSortedArray = unSortedArrayMaker(n);
@@ -162,10 +185,7 @@ const sortAlgorithmTester = function(n, algorithm1, algorithm2) {
   }
 }
 
-sortAlgorithmTester(10000, bubbleSort, bubbleSort_2, selectionSort, iterativeMergeSort);
-
-
-
+sortAlgorithmTester(30000, bubbleSort, bubbleSort_2, selectionSort, iterativeMergeSort, quickSort);
 
 
 
