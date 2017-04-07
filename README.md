@@ -20,7 +20,7 @@ You can also change a number of elements of an array for speed test by changing 
 sortAlgorithmTester(30000, ...); ---> sortAlgorithmTester(50000, ...);
 ```
 ## Contributing
-You can add more sort algorithms or better implementation with the same algorithm. When you add your sort function, please add your function to sortAlgorithmTester.
+You can add more sort algorithms or better implementation of the same algorithm. When you add your sort function, please add your function to sortAlgorithmTester.
 For example...
 ```
 sortAlgorithmTester(30000, bubbleSort, selectionSort, iterativeMergeSort, quickSort, YOUR FUNCTION!);
