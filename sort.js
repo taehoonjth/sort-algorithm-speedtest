@@ -1,4 +1,4 @@
-//Make an array which is unsorted
+//Make an array which is unsorted with a given length
 const unSortedArrayMaker = function(length) {
   let arr = [];
   let m = 0;
@@ -120,11 +120,9 @@ const iterativeMergeSort = function(array) {
     return array.slice();
   }
   var result = [];
-  //Initial step: Input array is split into "sorted" sublists
   for (var i = 0; i < array.length; i++) {
     result.push([array[i]]);
   }
-  //Merge step: Adjacent sublists are merged into sorted sublists
   while(result.length !== 1) {
     var temp = [];
     for (var i = 0; i < result.length; i += 2) {
@@ -136,7 +134,6 @@ const iterativeMergeSort = function(array) {
     }
     result = temp;
   }
-  //Done! Return the sorted array:
   return result[0];
 }
 
@@ -165,6 +162,7 @@ const heapSort = function(array) {
 const sortAlgorithmTester = function(n, algorithm1, algorithm2) {
   var algorithms = [...arguments].slice(1); 
   var unSortedArray = unSortedArrayMaker(n);
+  console.log(`\nStart sorting the ${n} elements of an array\n`);
   for (var i = 0; i < algorithms.length; i++) {
     var unSortedArrayCopy = unSortedArray.slice();
     const start = new Date();
@@ -183,6 +181,7 @@ const sortAlgorithmTester = function(n, algorithm1, algorithm2) {
       console.log(`${algorithms[i].name} failed!`);
     }
   }
+  console.log(`\nTest is over.`);
 }
 
 sortAlgorithmTester(30000, bubbleSort, bubbleSort_2, selectionSort, iterativeMergeSort, quickSort);
