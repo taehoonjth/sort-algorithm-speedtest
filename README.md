@@ -1,5 +1,5 @@
 # Sort algorithm speed test
-To list all of the sorting algorithms, and run speed test
+To list up all of the sorting algorithms, and run speed test
 ## List of sort algorithms
 * [Bubble sort](https://en.wikipedia.org/wiki/Bubble_sort)
 * [Selection sort](https://en.wikipedia.org/wiki/Selection_sort)
