@@ -19,5 +19,5 @@ node sort.js
 You can add more sort algorithms or better implementation with same alogorithm. When you add your sort function, please add your function to sortAlgorithmTester.
 For example...
 ```
-sortAlgorithmTester(30000, bubbleSort, bubbleSort_2, selectionSort, iterativeMergeSort, quickSort, YOUR FUNCTION!);
+sortAlgorithmTester(30000, bubbleSort, selectionSort, iterativeMergeSort, quickSort, YOUR FUNCTION!);
 ```
