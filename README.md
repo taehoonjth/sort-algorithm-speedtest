@@ -5,7 +5,7 @@ To list up all of the sorting algorithms, and run speed test
 * [Selection sort](https://en.wikipedia.org/wiki/Selection_sort)
 * [Merge sort](https://en.wikipedia.org/wiki/Merge_sort)
 * [Heap sort](https://en.wikipedia.org/wiki/Heapsort)
-* [Quicksort](https://en.wikipedia.org/wiki/Quicksort)
+* [Quick sort](https://en.wikipedia.org/wiki/Quicksort)
 ## Getting Started
 ### Installing
 ```
