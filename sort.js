@@ -85,7 +85,7 @@ const selectionSort = function(array) {
   return result;
 }
 
-var swap = function(index1, index2, array) {
+const swap = function(index1, index2, array) {
   var temp = array[index1];
   array[index1] = array[index2];
   array[index2] = temp;
@@ -112,7 +112,6 @@ const recursiveMergeSort = function() {
   if (array.length < 2) {
     return array.slice();
   }
-
 }
 
 const iterativeMergeSort = function(array) {
@@ -141,7 +140,7 @@ const quickSort = function(array) {
   // console.log(array);
   if (array.length <= 1) {
     return array;
-  }
+  } 
   var less = [];
   var greater = [];
   var pivot = array[array.length - 1];
@@ -156,7 +155,42 @@ const quickSort = function(array) {
   return quickSort(less).concat([pivot], quickSort(greater));
 }
 
+
 const heapSort = function(array) {
+  const parentIndex = function(index) {
+    return Math.floor((i - 1) / 2);
+  }
+  const childrenIndices = function(index) {
+    return [index * 2 + 1, index * 2 + 2];
+  }
+  const buildMaxHeap = function(array) {
+    const parentIndex = function(index) {
+      return Math.floor((i - 1) / 2);
+    }
+    const childrenIndices = function(index) {
+      return [index * 2 + 1, index * 2 + 2];
+    }
+    for (var i = array.length - 1; i > 0; i--) {
+      if (array[parentIndex(i)] < array[i]) {
+        swap(parentIndex(i), i, array);
+        var childrenIndicesArray = childrenIndices(i);
+        var currentIndex = i;
+        while(array[childrenIndicesArray[0]] > array[currentIndex] || array[childrenIndicesArray[1]] > array[currentIndex]) {
+          if (array[childrenIndicesArray[0]] > array[currentIndex]) {
+            swap(childrenIndicesArray[0], currentIndex, array);
+            currentIndex = childrenIndicesArray[0];
+            childrenIndicesArray = childrenIndices(currentIndex);
+          } else { 
+            swap(childrenIndicesArray[1], currentIndex, array);
+            currentIndex = childrenIndicesArray[1];
+            childrenIndicesArray = childrenIndices(currentIndex);
+          }
+        }
+      }
+    }
+    return array;
+  }
+  
 }
 
 const sortAlgorithmTester = function(n, algorithm1, algorithm2) {
@@ -184,7 +218,9 @@ const sortAlgorithmTester = function(n, algorithm1, algorithm2) {
   console.log(`\nTest is over.`);
 }
 
-sortAlgorithmTester(30000, bubbleSort, bubbleSort_2, selectionSort, iterativeMergeSort, quickSort);
+
+buildMaxHeap([ 6, 4, 3, 5, 1, 9, 0, 7, 8, 2, 1, 1, 1, 1 ]);
+//sortAlgorithmTester(30000, bubbleSort, bubbleSort_2, selectionSort, iterativeMergeSort, quickSort);
 
 
 
