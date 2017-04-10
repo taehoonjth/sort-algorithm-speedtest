@@ -229,6 +229,7 @@ const heapSort = function(array) {
 const sortAlgorithmTester = function(n, algorithm1, algorithm2) {
   var algorithms = [...arguments].slice(1); 
   var unSortedArray = unSortedArrayMaker(n);
+  var history = {};
   console.log(`\nStart sorting the ${n} elements of an array\n`);
   for (var i = 0; i < algorithms.length; i++) {
     var unSortedArrayCopy = unSortedArray.slice();
@@ -244,15 +245,24 @@ const sortAlgorithmTester = function(n, algorithm1, algorithm2) {
     }
     if(sorted) {
       console.log(`${algorithms[i].name} took ${end - start} millisecond`);
+      history[algorithms[i].name] = end - start;
     } else {
       console.log(`${algorithms[i].name} failed!`);
     }
   }
+  var winner;
+  for (var key in history) {
+    if (!winner) {
+      winner = key;
+    }
+    if (history[key] < history[winner]) {
+      winner = key;
+    }
+  }
+  console.log(`\nThe winner is ${winner}`);
   console.log(`\nTest is over.`);
 }
 
-
-// console.log(heapSort(unSortedArrayMaker(10)))
 sortAlgorithmTester(30000, bubbleSort, bubbleSort_2, selectionSort, iterativeMergeSort, quickSort, heapSort);
 
 
