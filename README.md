@@ -29,7 +29,7 @@ heapSort took 11 millisecond
 
 Test is over.
 ```
-You can also change a number of elements of an array for speed test by changing the first parameter of sortAlgorithmTester function(Be careful! This could blow your computer up!)
+You can also change a number of elements of an array for speed test by changing the first parameter of `sortAlgorithmTester` function(Be careful! This could blow your computer up!)
 ```
 sortAlgorithmTester(30000, ...); ---> sortAlgorithmTester(50000, ...);
 ```
