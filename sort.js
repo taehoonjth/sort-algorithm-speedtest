@@ -189,6 +189,9 @@ const heapSort = function(array) {
   const childrenIndices = function(index) {
     return [index * 2 + 1, index * 2 + 2];
   }
+  const iLeftChild = function(index) {
+    return index * 2 + 1;
+  }
   const buildMaxHeap = function(array) {
     for (var i = array.length - 1; i > 0; i--) {
       if (array[parentIndex(i)] < array[i]) {
@@ -212,21 +215,20 @@ const heapSort = function(array) {
   }
   const siftDown = function(array, end) {
     var i = 0; 
-    while(childrenIndices(i)[0] < end) {
-      if (childrenIndices(i)[0] >= array[i]) {
-        if (array[childrenIndices(i)[0]] > array[i]) {
-          swap(childrenIndices(i)[0], i, array);
-          i = childrenIndices(i)[0];
-        } else {
-          break;
-        }
+    while(iLeftChild(i) <= end) {
+      var child = iLeftChild(i);
+      var iSwap = i;
+      if (array[iSwap] < array[child]) {
+        iSwap = child;
+      }
+      if (child + 1 <= end && array[iSwap] < array[child + 1]) {
+        iSwap = child + 1;
+      }
+      if (iSwap === i) {
+        return;
       } else {
-        if (array[childrenIndices(i)[1]] > array[i]) {
-          swap(childrenIndices(i)[1], i, array);
-          i = childrenIndices(i)[1];
-        } else {
-          break;
-        }
+        swap(i, iSwap, array);
+        i = iSwap;
       }
     }
   }
@@ -234,12 +236,9 @@ const heapSort = function(array) {
   buildMaxHeap(array);
   var end = array.length - 1;
   while(end > 0) {
-    console.log('before swap   ', array);
     swap(0, end, array);
-    console.log('after swap    ', array);
     end--;
     siftDown(array, end);
-    console.log('after siftDown', array);
   }
   return array;
 }
@@ -260,6 +259,7 @@ const sortAlgorithmTester = function(n, algorithm1, algorithm2) {
         break;
       }
     }
+    console.log(sortedArray);
     if(sorted) {
       console.log(`${algorithms[i].name} took ${end - start} millisecond`);
     } else {
@@ -270,8 +270,8 @@ const sortAlgorithmTester = function(n, algorithm1, algorithm2) {
 }
 
 
-console.log(heapSort(unSortedArrayMaker(10)));
-//sortAlgorithmTester(30000, bubbleSort, bubbleSort_2, selectionSort, iterativeMergeSort, quickSort);
+// console.log(heapSort(unSortedArrayMaker(10)))
+sortAlgorithmTester(10, bubbleSort, bubbleSort_2, selectionSort, iterativeMergeSort, quickSort, heapSort);
 
 
 
