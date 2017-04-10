@@ -165,30 +165,39 @@ const heapSort = function(array) {
   const iLeftChild = function(index) {
     return index * 2 + 1;
   }
-  const buildMaxHeap = function(array) {
-    for (var i = array.length - 1; i > 0; i--) {
-      if (array[parentIndex(i)] < array[i]) {
-        swap(parentIndex(i), i, array);
-        var childrenIndicesArray = childrenIndices(i);
-        var currentIndex = i;
-        while(array[childrenIndicesArray[0]] > array[currentIndex] || array[childrenIndicesArray[1]] > array[currentIndex]) {
-          if (array[childrenIndicesArray[0]] > array[currentIndex]) {
-            swap(childrenIndicesArray[0], currentIndex, array);
-            currentIndex = childrenIndicesArray[0];
-            childrenIndicesArray = childrenIndices(currentIndex);
-          } else { 
-            swap(childrenIndicesArray[1], currentIndex, array);
-            currentIndex = childrenIndicesArray[1];
-            childrenIndicesArray = childrenIndices(currentIndex);
-          }
-        }
-      }
+  //wrong implementation
+  // const buildMaxHeap = function(array) {
+  //   for (var i = array.length - 1; i > 0; i--) {
+  //     if (array[parentIndex(i)] < array[i]) {
+  //       swap(parentIndex(i), i, array);
+  //       var childrenIndicesArray = childrenIndices(i);
+  //       var currentIndex = i;
+  //       while(array[childrenIndicesArray[0]] > array[currentIndex] || array[childrenIndicesArray[1]] > array[currentIndex]) {
+  //         if (array[childrenIndicesArray[0]] > array[currentIndex]) {
+  //           swap(childrenIndicesArray[0], currentIndex, array);
+  //           currentIndex = childrenIndicesArray[0];
+  //           childrenIndicesArray = childrenIndices(currentIndex);
+  //         } else { 
+  //           swap(childrenIndicesArray[1], currentIndex, array);
+  //           currentIndex = childrenIndicesArray[1];
+  //           childrenIndicesArray = childrenIndices(currentIndex);
+  //         }
+  //       }
+  //     }
+  //   }
+  //   return array;
+  // }
+  const heapify = function(array) {
+    var start = array.length - 1;
+    while(start >= 0) {
+      siftDown(array, start, array.length - 1);
+      start--;
     }
-    return array;
   }
-  const siftDown = function(array, end) {
-    var i = 0; 
+  const siftDown = function(array, start, end) {
+    var i = start; 
     while(iLeftChild(i) <= end) {
+      // console.log('before siftDown', array);
       var child = iLeftChild(i);
       var iSwap = i;
       if (array[iSwap] < array[child]) {
@@ -203,15 +212,16 @@ const heapSort = function(array) {
         swap(i, iSwap, array);
         i = iSwap;
       }
+      // console.log('after siftDown', array);
     }
   }
   //Build the heap in array a so that largest value is at the root
-  buildMaxHeap(array);
+  heapify(array);
   var end = array.length - 1;
   while(end > 0) {
     swap(0, end, array);
     end--;
-    siftDown(array, end);
+    siftDown(array, 0, end);
   }
   return array;
 }
@@ -232,7 +242,6 @@ const sortAlgorithmTester = function(n, algorithm1, algorithm2) {
         break;
       }
     }
-    console.log(sortedArray);
     if(sorted) {
       console.log(`${algorithms[i].name} took ${end - start} millisecond`);
     } else {
@@ -244,8 +253,7 @@ const sortAlgorithmTester = function(n, algorithm1, algorithm2) {
 
 
 // console.log(heapSort(unSortedArrayMaker(10)))
-sortAlgorithmTester(10, bubbleSort, bubbleSort_2, selectionSort, iterativeMergeSort, quickSort, heapSort);
-
+sortAlgorithmTester(30000, bubbleSort, bubbleSort_2, selectionSort, iterativeMergeSort, quickSort, heapSort);
 
 
 
