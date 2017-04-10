@@ -154,33 +154,6 @@ const quickSort = function(array) {
   // console.log(`pivot is ${pivot}`);
   return quickSort(less).concat([pivot], quickSort(greater));
 }
-  const buildMaxHeap = function(array) {
-    const parentIndex = function(index) {
-      return Math.floor((i - 1) / 2);
-    }
-    const childrenIndices = function(index) {
-      return [index * 2 + 1, index * 2 + 2];
-    }
-    for (var i = array.length - 1; i > 0; i--) {
-      if (array[parentIndex(i)] < array[i]) {
-        swap(parentIndex(i), i, array);
-        var childrenIndicesArray = childrenIndices(i);
-        var currentIndex = i;
-        while(array[childrenIndicesArray[0]] > array[currentIndex] || array[childrenIndicesArray[1]] > array[currentIndex]) {
-          if (array[childrenIndicesArray[0]] > array[currentIndex]) {
-            swap(childrenIndicesArray[0], currentIndex, array);
-            currentIndex = childrenIndicesArray[0];
-            childrenIndicesArray = childrenIndices(currentIndex);
-          } else { 
-            swap(childrenIndicesArray[1], currentIndex, array);
-            currentIndex = childrenIndicesArray[1];
-            childrenIndicesArray = childrenIndices(currentIndex);
-          }
-        }
-      }
-    }
-    return array;
-  }
 
 const heapSort = function(array) {
   const parentIndex = function(index) {
