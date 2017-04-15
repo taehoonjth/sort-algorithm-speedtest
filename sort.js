@@ -155,7 +155,11 @@ const quickSort = function(array) {
   return quickSort(less).concat([pivot], quickSort(greater));
 }
 
-const heapSort = function(array) {
+const quickSort_3way = function() {
+
+}
+
+const heapSort_SiftDown = function(array) {
   const parentIndex = function(index) {
     return Math.floor((index - 1) / 2);
   }
@@ -226,6 +230,18 @@ const heapSort = function(array) {
   return array;
 }
 
+const heapSort_SiftUP = function() {
+
+}
+
+const heapSort_BottomUP = function() {
+
+}
+
+const shellSort = function() {
+
+}
+
 const sortAlgorithmTester = function(n, algorithm1, algorithm2) {
   var algorithms = [...arguments].slice(1); 
   var unSortedArray = unSortedArrayMaker(n);
@@ -264,7 +280,5 @@ const sortAlgorithmTester = function(n, algorithm1, algorithm2) {
 }
 
 sortAlgorithmTester(30000, bubbleSort, bubbleSort_2, selectionSort, iterativeMergeSort, quickSort, heapSort);
-
-
 
 
