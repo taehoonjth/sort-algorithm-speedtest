@@ -159,7 +159,7 @@ const quickSort_3way = function() {
 
 }
 
-const heapSort_SiftDown = function(array) {
+const heapSort_TopDown_SiftDown = function(array) {
   const parentIndex = function(index) {
     return Math.floor((index - 1) / 2);
   }
@@ -169,28 +169,6 @@ const heapSort_SiftDown = function(array) {
   const iLeftChild = function(index) {
     return index * 2 + 1;
   }
-  //wrong implementation
-  // const buildMaxHeap = function(array) {
-  //   for (var i = array.length - 1; i > 0; i--) {
-  //     if (array[parentIndex(i)] < array[i]) {
-  //       swap(parentIndex(i), i, array);
-  //       var childrenIndicesArray = childrenIndices(i);
-  //       var currentIndex = i;
-  //       while(array[childrenIndicesArray[0]] > array[currentIndex] || array[childrenIndicesArray[1]] > array[currentIndex]) {
-  //         if (array[childrenIndicesArray[0]] > array[currentIndex]) {
-  //           swap(childrenIndicesArray[0], currentIndex, array);
-  //           currentIndex = childrenIndicesArray[0];
-  //           childrenIndicesArray = childrenIndices(currentIndex);
-  //         } else { 
-  //           swap(childrenIndicesArray[1], currentIndex, array);
-  //           currentIndex = childrenIndicesArray[1];
-  //           childrenIndicesArray = childrenIndices(currentIndex);
-  //         }
-  //       }
-  //     }
-  //   }
-  //   return array;
-  // }
   const heapify = function(array) {
     var start = array.length - 1;
     while(start >= 0) {
@@ -230,11 +208,66 @@ const heapSort_SiftDown = function(array) {
   return array;
 }
 
-const heapSort_SiftUP = function() {
-
+const heapSort_TopDown_SiftUP = function(array) {
+  const iLeftChild = function(index) {
+    return index * 2 + 1;
+  }
+  const heapify = function(array, count) {
+    let end = 1;
+    while(end < count) {
+      siftUP(array, 0, end);
+      end++;
+    }
+    return array;
+  }
+  const siftUP =function(array, start, end) {
+    const parentIndex = function(index) {
+      return Math.floor((index - 1) / 2);
+    }  
+    let child = end;
+    while(child > start) {
+      let iParent = parentIndex(child);
+      if (array[iParent] < array[child]) {
+        swap(iParent, child, array);
+        child = iParent;
+      } else {
+        return;
+      }
+    }
+    return array;
+  }
+  const siftDown = function(array, start, end) {
+    var i = start; 
+    while(iLeftChild(i) <= end) {
+      // console.log('before siftDown', array);
+      var child = iLeftChild(i);
+      var iSwap = i;
+      if (array[iSwap] < array[child]) {
+        iSwap = child;
+      }
+      if (child + 1 <= end && array[iSwap] < array[child + 1]) {
+        iSwap = child + 1;
+      }
+      if (iSwap === i) {
+        return;
+      } else {
+        swap(i, iSwap, array);
+        i = iSwap;
+      }
+      // console.log('after siftDown', array);
+    }
+  }
+  heapify(array, array.length);
+  let end = array.length - 1; 
+  while(end > 0) {
+    swap(0, end, array);
+    end--;
+    siftDown(array, 0, end);
+  }
+  return array;
 }
 
-const heapSort_BottomUP = function() {
+const heapSort_TopDown = function() {
 
 }
 
@@ -279,6 +312,6 @@ const sortAlgorithmTester = function(n, algorithm1, algorithm2) {
   console.log(`\nTest is over.`);
 }
 
-sortAlgorithmTester(30000, bubbleSort, bubbleSort_2, selectionSort, iterativeMergeSort, quickSort, heapSort);
+sortAlgorithmTester(30000, bubbleSort, bubbleSort_2, selectionSort, iterativeMergeSort, quickSort, heapSort_TopDown_SiftDown, heapSort_TopDown_SiftUP);
 
 
