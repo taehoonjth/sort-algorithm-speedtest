@@ -267,8 +267,55 @@ const heapSort_TopDown_SiftUP = function(array) {
   return array;
 }
 
-const heapSort_TopDown = function() {
-
+const heapSort_BottomUP = function(array) {
+  const iParent = function(index) {
+    return Math.floor((index - 1) / 2);
+  }
+  const iLeftChild = function(index) {
+    return index * 2 + 1;
+  }
+  const iRightChild = function(index) {
+    return index * 2 + 2;  
+  }
+  const leafSearch = function(array, i, end) {
+    let j = i;
+    while (iLeftChild(j) <= end) {
+      if (iRightChild(j) <= end && array[iRightChild(j)] > array[iLeftChild(j)]) {
+        j = iRightChild(j);
+      } else {
+        j = iLeftChild(j);
+      }
+    }
+    return j;
+  }
+  const siftDown = function(array, i, end) {
+    let j = leafSearch(array, i, end);
+    while(array[i] > array[j]) {
+      j = iParent(j);
+    }
+    x = array[j];
+    while(j > i) {
+      let temp = array[iParent(j)];
+      array[iParent(j)] = x;
+      x = temp;
+      j = iParent(j);
+    }
+  }
+  const heapify = function(array) {
+    let start = array.length - 1;
+    while(start >= 0) {
+      siftDown(array, start, array.length - 1);
+      start--;
+    }
+  }
+  heapify(array);
+  let end = array.length - 1;
+  while(end > 0) {
+    swap(0, end, array);
+    end--;
+    siftDown(array, 0, end);
+  }
+  return array;
 }
 
 const shellSort = function() {
@@ -312,6 +359,5 @@ const sortAlgorithmTester = function(n, algorithm1, algorithm2) {
   console.log(`\nTest is over.`);
 }
 
-sortAlgorithmTester(30000, bubbleSort, bubbleSort_2, selectionSort, iterativeMergeSort, quickSort, heapSort_TopDown_SiftDown, heapSort_TopDown_SiftUP);
-
+sortAlgorithmTester(30000, bubbleSort, bubbleSort_2, selectionSort, iterativeMergeSort, quickSort, heapSort_TopDown_SiftDown, heapSort_TopDown_SiftUP, heapSort_BottomUP);
 
