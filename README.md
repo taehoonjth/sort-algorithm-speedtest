@@ -11,6 +11,8 @@ To list up all of the sorting algorithms, and run speed test
   - Top down(sift up)
   - Bottom up
 - [Quick sort](https://en.wikipedia.org/wiki/Quicksort)
+  - Lomuto partition scheme
+  - Hoare partition scheme
 ## Getting Started
 ### Installing
 ```
