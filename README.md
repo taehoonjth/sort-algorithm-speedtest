@@ -4,7 +4,12 @@ To list up all of the sorting algorithms, and run speed test
 - [Bubble sort](https://en.wikipedia.org/wiki/Bubble_sort)
 - [Selection sort](https://en.wikipedia.org/wiki/Selection_sort)
 - [Merge sort](https://en.wikipedia.org/wiki/Merge_sort)
+  - Recursive
+  - Iterative
 - [Heap sort](https://en.wikipedia.org/wiki/Heapsort)
+  - Top down(sift down)
+  - Top down(sift up)
+  - Bottom up
 - [Quick sort](https://en.wikipedia.org/wiki/Quicksort)
 ## Getting Started
 ### Installing
