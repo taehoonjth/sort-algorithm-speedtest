@@ -25,14 +25,19 @@ And the result will be
 ```
 Start sorting the 30000 elements of an array
 
-bubbleSort took 1582 millisecond
-bubbleSort_2 took 1921 millisecond
-selectionSort took 1434 millisecond
-iterativeMergeSort took 41 millisecond
-quickSort took 21 millisecond
-heapSort took 8 millisecond
+bubbleSort took 1547 millisecond
+bubbleSort_2 took 1818 millisecond
+selectionSort took 1391 millisecond
+iterativeMergeSort took 42 millisecond
+quickSort took 16 millisecond
+heapSort_TopDown_SiftDown took 7 millisecond
+heapSort_TopDown_SiftUP took 9 millisecond
+heapSort_BottomUP took 9 millisecond
 
-The winner is heapSort
+The winner is heapSort_TopDown_SiftDown
+
+Test is over.
+[Finished in 4.9s]
 ```
 You can also change a number of elements of an array for speed test by changing the first parameter of `sortAlgorithmTester` function(Be careful! This could blow your computer up!)
 ```
