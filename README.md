@@ -16,7 +16,7 @@ To list up all of the sorting algorithms, and run speed test
 ## Getting Started
 ### Installing
 ```
-git clone https://github.com/Taehoonjth/sort-test/ && cd sort-test
+git clone https://github.com/Taehoonjth/sort-algorithm-speedtest.git && cd sort-algorithm-speedtest
 ```
 ### Running the test
 Run sort.js
